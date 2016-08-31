@@ -12,6 +12,7 @@
 
 #define MAXZOOMSCALE 3
 #define MINZOOMSCALE 0.5
+#define DefaultImage [UIImage imageNamed:@""]
 
 @interface ImageBrowseItem()
 {
@@ -31,7 +32,7 @@
         self.showsHorizontalScrollIndicator = NO;
         self.showsVerticalScrollIndicator = NO;
         self.bounces = NO;
-        imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, (self.height - self.width)/2, self.width , self.width)];
+        imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, (self.bounds.size.height - self.bounds.size.width)/2, self.bounds.size.width , self.bounds.size.width)];
         imageView.image = DefaultImage;
         [self addSubview:imageView];
         [self addGestureRecognizer];
