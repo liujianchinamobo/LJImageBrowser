@@ -12,6 +12,8 @@
 
 #define MAXZOOMSCALE 3
 #define MINZOOMSCALE 0.5
+
+// 占位图片
 #define DefaultImage [UIImage imageNamed:@""]
 
 @interface ImageBrowseItem()
@@ -40,6 +42,7 @@
     return self;
 }
 
+// 双击放大
 -(void)addGestureRecognizer
 {
     UITapGestureRecognizer *doubletap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap:)];
@@ -97,7 +100,10 @@
     if (url)
     {
         
-        [imageView sd_setImageWithURL:url placeholderImage:DefaultImage options:SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        [imageView sd_setImageWithURL:url placeholderImage:DefaultImage options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+            // 下载进度
+            NSLog(@"%ld--%ld",receivedSize,expectedSize);
+        } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             if (!error) {
                 CGFloat imageW = image.size.width;
                 CGFloat imageH = image.size.height;
@@ -120,7 +126,6 @@
                 imageView.frame = CGRectMake(0, (screenH - screenW)/2, screenW , screenW);
                 
             }
-
         }];
         
     }
