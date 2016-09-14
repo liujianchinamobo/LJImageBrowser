@@ -10,7 +10,7 @@
 /**
  *  图片放大器
  */
-@interface ImageBrowseItem : UIScrollView<UIScrollViewDelegate>
+@interface LJImageBrowseItem : UIScrollView<UIScrollViewDelegate>
 @property (nonatomic, strong) UIImage * image;
 @property (nonatomic, strong) NSString * imageurl;
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "LJImageBrowseView.h"
-#import "ImageBrowseItem.h"
+#import "LJImageBrowseItem.h"
 #import "LJImageBrowseViewCell.h"
 
 @interface LJImageBrowseView()<UICollectionViewDataSource,UICollectionViewDelegate>

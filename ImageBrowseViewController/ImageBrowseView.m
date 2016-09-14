@@ -7,7 +7,7 @@
 //
 
 #import "ImageBrowseView.h"
-#import "ImageBrowseItem.h"
+#import "LJImageBrowseItem.h"
 
 @interface ImageBrowseView()
 
@@ -72,7 +72,7 @@
 {
     for (int i = 0; i < _imageArray.count; i ++) {
         
-        ImageBrowseItem * item = [[ImageBrowseItem alloc] initWithFrame:CGRectMake(i*_scrollView.bounds.size.width, 0, _scrollView.bounds.size.width, _scrollView.bounds.size.height)];
+        LJImageBrowseItem * item = [[LJImageBrowseItem alloc] initWithFrame:CGRectMake(i*_scrollView.bounds.size.width, 0, _scrollView.bounds.size.width, _scrollView.bounds.size.height)];
         
         id obj = _imageArray[i];
         if ([obj isKindOfClass:[NSString class]]) {

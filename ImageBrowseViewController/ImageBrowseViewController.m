@@ -10,7 +10,7 @@
 //
 
 #import "ImageBrowseViewController.h"
-#import "ImageBrowseItem.h"
+#import "LJImageBrowseItem.h"
 
 @interface ImageBrowseViewController ()
 
@@ -69,7 +69,7 @@
 {
     for (int i = 0; i < _imageArray.count; i ++) {
         
-        ImageBrowseItem * item = [[ImageBrowseItem alloc] initWithFrame:CGRectMake(i*_scrollView.bounds.size.width, 0, _scrollView.bounds.size.width, _scrollView.bounds.size.height)];
+        LJImageBrowseItem * item = [[LJImageBrowseItem alloc] initWithFrame:CGRectMake(i*_scrollView.bounds.size.width, 0, _scrollView.bounds.size.width, _scrollView.bounds.size.height)];
         UIImage *image = _imageArray[i];
         item.image = image;
         [_scrollView addSubview:item];

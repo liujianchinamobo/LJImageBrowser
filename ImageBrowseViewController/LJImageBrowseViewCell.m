@@ -7,19 +7,19 @@
 //
 
 #import "LJImageBrowseViewCell.h"
-#import "ImageBrowseItem.h"
+#import "LJImageBrowseItem.h"
 @interface LJImageBrowseViewCell()
-@property (strong,nonatomic) ImageBrowseItem *item;
+@property (strong,nonatomic) LJImageBrowseItem *item;
 @end
 @implementation LJImageBrowseViewCell
 
 - (void)awakeFromNib {
 }
 
--(ImageBrowseItem *)item
+-(LJImageBrowseItem *)item
 {
     if (!_item) {
-        _item = [[ImageBrowseItem alloc] initWithFrame:self.bounds];
+        _item = [[LJImageBrowseItem alloc] initWithFrame:self.bounds];
         [self.contentView addSubview:_item];
     }
     return _item;

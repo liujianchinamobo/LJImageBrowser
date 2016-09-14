@@ -7,7 +7,7 @@
 //  Copyright © 2016年 liujian. All rights reserved.
 //
 
-#import "ImageBrowseItem.h"
+#import "LJImageBrowseItem.h"
 #import "UIImageView+WebCache.h"
 
 #define MAXZOOMSCALE 3
@@ -16,14 +16,14 @@
 // 占位图片
 #define DefaultImage [UIImage imageNamed:@""]
 
-@interface ImageBrowseItem()
+@interface LJImageBrowseItem()
 {
     UIImageView *imageView;
     BOOL isMaxZoomScale;
 }
 @end
 
-@implementation ImageBrowseItem
+@implementation LJImageBrowseItem
 
 -(instancetype)initWithFrame:(CGRect)frame
 {
