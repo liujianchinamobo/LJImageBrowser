@@ -12,6 +12,7 @@
 @interface ImageBrowseView()
 
 @property (nonatomic, strong) UIScrollView *scrollView;
+@property (nonatomic, strong) UITapGestureRecognizer * tap;
 @end
 
 @implementation ImageBrowseView
@@ -25,10 +26,11 @@
     return self;
 }
 
+/**单击*/
 -(void)addtapGesture
 {
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeView)];
-    [self addGestureRecognizer:tap];
+    _tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeView)];
+    [self addGestureRecognizer:_tap];
 }
 
 -(void)removeView
