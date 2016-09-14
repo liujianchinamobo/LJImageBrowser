@@ -42,12 +42,17 @@
     return self;
 }
 
-// 双击放大
+
 -(void)addGestureRecognizer
 {
+    // 双击放大
     UITapGestureRecognizer *doubletap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap:)];
     doubletap.numberOfTapsRequired = 2;
     [self addGestureRecognizer:doubletap];
+    
+    // 长按
+    UILongPressGestureRecognizer *longpress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
+    [self addGestureRecognizer:longpress];
 }
 
 -(void)doubleTap:(UITapGestureRecognizer *)tap
@@ -60,6 +65,16 @@
     {
         [self setZoomScale:1.0 animated:YES];
         isMaxZoomScale = NO;
+    }
+}
+
+-(void)longPress:(UILongPressGestureRecognizer *)press
+{
+    if (press.state == UIGestureRecognizerStateBegan) {
+        
+        UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:nil delegate:nil cancelButtonTitle:@"取消" destructiveButtonTitle:@"分享图片" otherButtonTitles:@"保存图片", nil];
+        [action showInView:self];
+        
     }
 }
 

@@ -76,6 +76,10 @@
         
         LJImageBrowseItem * item = [[LJImageBrowseItem alloc] initWithFrame:CGRectMake(i*_scrollView.bounds.size.width, 0, _scrollView.bounds.size.width, _scrollView.bounds.size.height)];
         
+        for (UIGestureRecognizer *gesture in item.gestureRecognizers) {
+            [_tap requireGestureRecognizerToFail:gesture];
+        }
+        
         id obj = _imageArray[i];
         if ([obj isKindOfClass:[NSString class]]) {
             item.imageurl = obj;
