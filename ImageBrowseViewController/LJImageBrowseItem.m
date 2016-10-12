@@ -16,7 +16,7 @@
 // 占位图片
 #define DefaultImage [UIImage imageNamed:@""]
 
-@interface LJImageBrowseItem()
+@interface LJImageBrowseItem()<UIActionSheetDelegate>
 {
     UIImageView *imageView;
     BOOL isMaxZoomScale;
@@ -36,12 +36,29 @@
         self.bounces = NO;
         imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, (self.bounds.size.height - self.bounds.size.width)/2, self.bounds.size.width , self.bounds.size.width)];
         imageView.image = DefaultImage;
+        imageView.clipsToBounds = YES;
         [self addSubview:imageView];
         [self addGestureRecognizer];
     }
     return self;
 }
 
+-(void)showAnimation
+{
+    CGRect frame = imageView.frame;
+    imageView.frame = self.origin;
+    [UIView animateWithDuration:.3 animations:^{
+        imageView.frame = frame;
+    }];
+}
+
+-(void)removeAnimation
+{
+    [UIView animateWithDuration:.3 animations:^{
+        imageView.frame = self.origin;
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
+    }];
+}
 
 -(void)addGestureRecognizer
 {
@@ -50,7 +67,7 @@
     doubletap.numberOfTapsRequired = 2;
     [self addGestureRecognizer:doubletap];
     
-    // 长按
+    // 长按保存到相册
     UILongPressGestureRecognizer *longpress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
     [self addGestureRecognizer:longpress];
 }
@@ -75,6 +92,28 @@
         UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:nil delegate:nil cancelButtonTitle:@"取消" destructiveButtonTitle:@"分享图片" otherButtonTitles:@"保存图片", nil];
         [action showInView:self];
         
+    }
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0:
+            UIImageWriteToSavedPhotosAlbum(imageView.image,  self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+            break;
+            
+        default:
+            break;
+    }
+}
+
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+{
+    if (error) {
+        [SVProgressHUD showErrorWithStatus:@"保存图片失败，无法访问相册"];
+    }else
+    {
+        [SVProgressHUD showSuccessWithStatus:@"已保存到相册"];
     }
 }
 

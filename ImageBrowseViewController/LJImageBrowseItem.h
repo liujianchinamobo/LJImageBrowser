@@ -13,4 +13,7 @@
 @interface LJImageBrowseItem : UIScrollView<UIScrollViewDelegate>
 @property (nonatomic, strong) UIImage * image;
 @property (nonatomic, strong) NSString * imageurl;
+@property (nonatomic, assign) CGRect  origin;
+-(void)showAnimation;
+-(void)removeAnimation;
 @end

@@ -14,7 +14,18 @@
  
  */
 
+@class ImageBrowseView;
+@class LJImageBrowseItem;
+
 @interface ImageBrowseView : UIView
+/**图片数组的位置*/
+@property (nonatomic, strong) NSArray * frameArray;
+/**图片数组*/
 @property (nonatomic, strong) NSArray * imageArray;
+/**开始展示的图片位置索引*/
 @property (nonatomic, assign) NSInteger index;
+/**代理*/
+@property (nonatomic, weak) id delegate;
+/**展示图片*/
+-(void)showInView:(UIView *)view;
 @end
