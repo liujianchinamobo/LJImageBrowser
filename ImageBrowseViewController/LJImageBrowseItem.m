@@ -36,6 +36,8 @@
         self.bounces = NO;
         imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, (self.bounds.size.height - self.bounds.size.width)/2, self.bounds.size.width , self.bounds.size.width)];
         imageView.image = DefaultImage;
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
+
         imageView.clipsToBounds = YES;
         [self addSubview:imageView];
         [self addGestureRecognizer];
@@ -56,7 +58,6 @@
 {
     [UIView animateWithDuration:.3 animations:^{
         imageView.frame = self.origin;
-        imageView.contentMode = UIViewContentModeScaleAspectFill;
     }];
 }
 
